@@ -17,12 +17,9 @@ keyBoard.createKeyBoard().createRowsKeys();
 console.log(keyBoard); // REMOVE AFTER
 
 const control = new Control(textArea, keyBoard);
-control.createListener();
-console.log(control);
-
-document.addEventListener('keydown', (e) => {
-  console.log(e);
-});
+control.createListenerForVirtualButtons();
+control.createListenerForRealButtons();
+console.log(control); // REMOVE AFTERS
 
 // const textArea = new Component('textarea', 'textarea');
 // textArea.renderComponent(document.body);

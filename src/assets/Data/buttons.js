@@ -238,6 +238,7 @@ const BUTTONS = [
     code: 'CapsLock',
     style: 'wide',
     row: 3,
+    push: true,
   },
   {
     symbol: 'letter',
@@ -342,6 +343,7 @@ const BUTTONS = [
     code: 'ShiftLeft',
     style: 'widepluplus',
     row: 4,
+    push: true,
   },
   {
     symbol: 'letter',
@@ -438,6 +440,7 @@ const BUTTONS = [
     code: 'ShiftRight',
     style: 'normal',
     row: 4,
+    push: true,
   },
   {
     symbol: 'functional',
@@ -446,6 +449,7 @@ const BUTTONS = [
     code: 'ControlLeft',
     style: 'medium',
     row: 5,
+    push: true,
   },
   {
     symbol: 'functional',
@@ -462,11 +466,12 @@ const BUTTONS = [
     code: 'AltLeft',
     style: 'normal',
     row: 5,
+    push: true,
   },
   {
     symbol: 'functional',
-    content: { ru: '', en: '' },
-    altContent: { ru: '', en: '' },
+    content: { ru: ' ', en: ' ' },
+    altContent: { ru: ' ', en: ' ' },
     code: 'Space',
     style: 'overwide',
     row: 5,
@@ -478,6 +483,7 @@ const BUTTONS = [
     code: 'AltRight',
     style: 'normal',
     row: 5,
+    push: true,
   },
   {
     symbol: 'functional',
@@ -486,6 +492,7 @@ const BUTTONS = [
     code: 'ControlRight',
     style: 'medium',
     row: 5,
+    push: true,
   },
   {
     symbol: 'functional',

@@ -44,6 +44,15 @@
 }
 
 .active_button {
+    box-shadow: none;
+    transform: scale(0.95);
+    transition: 0.1s;
     color: white;
     text-shadow: white 1px 0 10px;
+}
+
+.push_button {
+    box-shadow: none;
+    transform: scale(0.95);
+    transition: 0.1s;
 }

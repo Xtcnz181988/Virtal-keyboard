@@ -2,6 +2,7 @@ export default class KeyBoard {
   constructor(buttons) {
     this.buttons = buttons;
     this.setKeys = [];
+    this.setCodes = [];
   }
 
   createKeyBoard() {
@@ -21,9 +22,11 @@ export default class KeyBoard {
           this.key.className = element.style;
           this.key.innerText = element.content.en; // REMOVE AFTER
           this.key.symbol = element.symbol;
+          this.key.push = element.push;
           this.key.content = element.content;
           this.key.altContent = element.altContent;
           this.key.code = element.code;
+          this.setCodes.push(element.code);
           this.key.row = element.row;
           this.setKeys.push(this.key);
           this.row.append(this.key);
