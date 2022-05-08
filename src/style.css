@@ -1,0 +1,49 @@
+.wrapper {
+    height: 100%;
+    width: 100%;
+    background-color: #292c33;
+}
+
+.wrapper-keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 5px;
+    background-color: #f26739;
+    border-radius: 10px;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.normal {
+    width: 50px;
+}
+
+.medium {
+    width: 75px;
+}
+
+.wide {
+    width: 107.5px;
+}
+
+.wideplus {
+    width: 152.5px;
+}
+
+.overwide {
+    width: 377.5px;
+}
+
+.widepluplus {
+    width: 207.5px;
+}
+
+.active_button {
+    color: white;
+    text-shadow: white 1px 0 10px;
+}
