@@ -19,23 +19,28 @@ export default class Control {
         } else if (e.target.code === 'ShiftLeft') {
           e.target.classList.toggle('active_button');
           if (this.Alt) {
+            console.log('3');
+            this.Alt = !this.Alt;
             this.changeLanguage();
           } else if (!this.ShiftRight) {
             this.changeShift(e.target.code);
+            this.ShiftLeft = !this.ShiftLeft;
           }
-          this.ShiftLeft = !this.ShiftLeft;
         } else if (e.target.code === 'ShiftRight') {
           e.target.classList.toggle('active_button');
           if (this.Alt) {
+            console.log('2');
+            this.Alt = !this.Alt;
             this.changeLanguage();
           } else if (!this.ShiftLeft) {
             this.changeShift(e.target.code);
+            this.ShiftRight = !this.ShiftRight;
           }
-          this.ShiftRight = !this.ShiftRight;
-        } else if (e.target.code === 'AltLeft' || e.target.code === 'AltRight') {
+        } else if (e.target.code === 'AltLeft') {
           this.Alt = !this.Alt;
           e.target.classList.toggle('active_button');
-          if (this.ShiftLeft || this.ShiftRight) {
+          if (this.Alt && (this.ShiftLeft || this.ShiftRight)) {
+            console.log('1');
             this.changeLanguage();
           }
         }
@@ -77,14 +82,20 @@ export default class Control {
   }
 
   changeLanguage() {
-    console.log(this.Language);
+    this.ShiftLeft = false;
+    this.ShiftRight = false;
+    this.Alt = false;
     this.keyBoard.setKeys.forEach((key) => {
       const tempKey = key;
-      tempKey.classList.remove('active_button');
-      if (this.Language === 'en') {
-        tempKey.innerText = key.content.ru;
-      } else {
-        tempKey.innerText = key.content.en;
+      if (tempKey.code !== 'CapsLock') {
+        tempKey.classList.remove('active_button');
+      }
+      if (key.symbol === 'letter' || key.symbol === 'other' || key.symbol === 'digits') {
+        if (this.Language === 'en') {
+          this.CapsLock ? tempKey.innerText = key.content.ru.toUpperCase() : tempKey.innerText = key.content.ru;
+        } else {
+          this.CapsLock ? tempKey.innerText = key.content.en.toUpperCase() : tempKey.innerText = key.content.en;
+        }
       }
     });
     if (this.Language === 'en') {
@@ -92,10 +103,6 @@ export default class Control {
     } else {
       this.Language = 'en';
     }
-    this.ShiftLeft = false;
-    this.ShiftRight = false;
-    this.Alt = !this.Alt;
-    console.log(this.Language);
   }
 
   // render(parent) {
