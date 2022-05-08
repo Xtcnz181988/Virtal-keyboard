@@ -21,8 +21,8 @@ control.createListener();
 console.log(control);
 
 document.addEventListener('keydown', (e) => {
-    console.log(e)
-})
+  console.log(e);
+});
 
 // const textArea = new Component('textarea', 'textarea');
 // textArea.renderComponent(document.body);
@@ -45,4 +45,3 @@ document.addEventListener('keydown', (e) => {
 
 // const wrapper = new Component ('div', 'wrapper');
 // wrapper.render(document.body);
-

@@ -45,7 +45,7 @@ button {
     border: none;
     outline: none;
     padding: 0;
-    box-shadow: 3px 3px 2px white;
+    box-shadow: 2px 2px 2px white;
     border-radius: 5px;
     transition: 0.3s;
     background-color: #292c33;
@@ -53,9 +53,6 @@ button {
 
 button:active {
     box-shadow: none;
+    transform: scale(0.95);
     transition: 0.3s;
-    fill: white;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
 }

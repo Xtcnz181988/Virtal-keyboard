@@ -12,7 +12,7 @@ export default class KeyBoard {
   }
 
   createRowsKeys() {
-    for (let row = 1; row <= 5; row++) {
+    for (let row = 1; row <= 5; row += 1) {
       this.row = document.createElement('div');
       this.row.className = 'row';
       this.buttons.forEach((element) => {
