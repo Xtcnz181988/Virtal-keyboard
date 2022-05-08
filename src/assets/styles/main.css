@@ -1,0 +1,61 @@
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    background-color: #292c33;
+    font-family: 'WorkSans-SemiBold';
+    color: #292c33;
+}
+
+textarea {
+    padding: 5px;
+    max-width: 70%;
+    line-height: 1.5;
+    border-radius: 5px;
+    font-family: 'WorkSans-SemiBold';
+    border: 2px solid #999;
+    resize: none;
+    
+}
+
+textarea:focus {
+    outline:none;
+}
+
+textarea::-webkit-scrollbar {
+    width: 10px;
+}
+
+textarea::-webkit-scrollbar-track {
+    background-color:#292c33;
+    border-radius: 10px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color:#f26739;
+}
+
+button {
+    height: 50px;
+    color: #f26739;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    padding: 0;
+    box-shadow: 3px 3px 2px white;
+    border-radius: 5px;
+    transition: 0.3s;
+    background-color: #292c33;
+}
+
+button:active {
+    box-shadow: none;
+    transition: 0.3s;
+    fill: white;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
