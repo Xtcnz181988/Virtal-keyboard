@@ -11,16 +11,12 @@ export default class TextArea {
     this.element.className = this.style;
     this.element.rows = this.rows;
     this.element.cols = this.cols;
+    // this.element.autofocus = true;
     return this;
   }
 
   render(parent) { // MAYBE REMOVE
     parent.append(this.element);
-    return this;
-  }
-
-  printText(symbol) { // MAYBE REMOVE
-    this.element.value = symbol;
     return this;
   }
 }

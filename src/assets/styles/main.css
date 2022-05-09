@@ -47,6 +47,16 @@ button {
     padding: 0;
     box-shadow: 2px 2px 2px white;
     border-radius: 5px;
-    transition: 0.3s;
+    transition: 0.1s;
     background-color: #292c33;
+}
+
+button:active {
+    box-shadow: none;
+    transform: scale(0.95);
+    transition: 0.1s;
+}
+
+button:hover {
+    cursor: pointer;
 }
