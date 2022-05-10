@@ -10,8 +10,6 @@ export default class Control {
     this.AltLeft = false;
     this.Language = 'en';
     this.arrFunctionalityBottons = ['CapsLock', 'ShiftRight', 'ControlLeft', 'ControlRight', 'AltLeft', 'ShiftLeft'];
-    this.selectionStart = 0;
-    this.selectionEnd = 0;
   }
 
   createListenerForVirtualButtons() {
@@ -31,7 +29,7 @@ export default class Control {
         if (this.keyBoard.setCodes.includes(eventKeyDown.code)) {
           this.checkFunctionality(eventKeyDown, eventKeyDown.code);
           this.changeStyleButton(eventKeyDown, eventKeyDown.code);
-        } 
+        }
       } else if (!this.arrFunctionalityBottons.includes(eventKeyDown.code)) {
         this.changeStyleButton(eventKeyDown, eventKeyDown.code);
         this.print(eventKeyDown.code);
@@ -137,7 +135,8 @@ export default class Control {
           }
         }
         // if (e.type === 'click') {
-        //     if (tempKey.code ==='ShiftLeft' || tempKey.code === 'ShiftLeft' || tempKey.code === 'AltLeft') {
+        // const tkc = tempKey.code
+        //     if (tkc ==='ShiftLeft' || tkc === 'ShiftLeft' || tkc === 'AltLeft') {
         //       tempKey.classList.remove('active_button');
         //     }
         //     this.changeShift();
@@ -207,48 +206,55 @@ export default class Control {
   }
 
   print(code) {
-    this.textArea.element.selectionStart = this.selectionStart;
-    let symbol;
-    this.keyBoard.setKeys.forEach(key => {
-        const tempKey = key;
-        if (tempKey.code === code) {
-            if (tempKey.code === 'Tab') {
-                symbol = '\t';
-            } else if (tempKey.code === 'Enter') {
-                symbol = '\r';
-            } else if (tempKey.code === 'Backspace') {
-                symbol = '\r';
-            } else if (tempKey.code === 'Delete') {
-                console.log('Delete');
-            } else {
-                symbol = tempKey.textContent;
-            }
-        }
-    })
-    this.textArea.element.selectionStart = 0;
-    // this.textArea.element.selectionEnd = this.textArea.selectionEnd;
     this.textArea.element.focus();
-    let start = this.textArea.element.selectionStart;
-    let end = this.textArea.element.selectionEnd;
-    let stringStart = '';
-    let stringEnd = '';
-    const length = this.textArea.element.value.length;
-    const value = this.textArea.element.value;
-    console.log(value)
-    if (start === end) {
-        console.log('1')
-        if (start === length) {
-            stringStart = value + symbol;
-        } else if (start < length) {
-            stringStart = value.slice(0, start) + symbol;
-            stringEnd = value.slice(start, length)
-        }  
-    }
-    
-    
 
-    this.textArea.element.value = stringStart + stringEnd;
-    this.selectionStart = this.textArea.element.selectionStart;
-    // this.textArea.selectionEnd = this.textArea.element.selectionEnd;
+    const { value } = this.textArea.element;
+    const { length } = this.textArea.element.value;
+
+    let symbol = '';
+    const start = this.textArea.element.selectionStart;
+    const end = this.textArea.element.selectionEnd;
+
+    const stringStart = this.textArea.element.value.slice(0, start);
+    const stringEnd = this.textArea.element.value.slice(start, length);
+
+    this.keyBoard.setKeys.forEach((key) => {
+      const tempKey = key;
+      if (tempKey.code === code) {
+        if (tempKey.code === 'Tab') {
+          symbol = '\t';
+          this.textArea.element.value = stringStart + symbol + stringEnd;
+        } else if (tempKey.code === 'Enter') {
+          symbol = '\r';
+          this.textArea.element.value = stringStart + symbol + stringEnd;
+        } else if (tempKey.code === 'Backspace') {
+          if (start === end) {
+            symbol = stringStart.slice(0, -1) + stringEnd;
+            this.textArea.element.value = symbol;
+            this.textArea.element.setSelectionRange(stringStart.length - 1, stringEnd.length - 1);
+          } else {
+            symbol = stringStart.slice(0, start) + stringEnd.slice(end, length);
+            this.textArea.element.value = symbol;
+            this.textArea.element.setSelectionRange(stringStart.length, stringEnd.length);
+          }
+        } else if (tempKey.code === 'Delete') {
+          if (start === end) {
+            console.log('start === end');
+            symbol = stringStart + stringEnd.slice(1);
+            this.textArea.element.value = symbol;
+            this.textArea.element.setSelectionRange(stringStart.length, stringStart.length);
+          } else {
+            symbol = stringStart + value.slice(end, length);
+            this.textArea.element.value = symbol;
+            this.textArea.element.setSelectionRange(stringStart.length, stringEnd.length);
+          }
+        } else {
+          symbol = tempKey.textContent;
+          this.textArea.element.value = stringStart + symbol + stringEnd;
+          this.textArea.element.setSelectionRange(start, end);
+          this.textArea.element.selectionStart = start + 1;
+        }
+      }
+    });
   }
 }

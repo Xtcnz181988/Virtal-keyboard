@@ -7,6 +7,10 @@ import Control from './assets/Components/control';
 import TextArea from './assets/Components/textarea';
 import KeyBoard from './assets/Components/keyboard';
 import BUTTONS from './assets/Data/buttons';
+import Text from './assets/Components/titletext';
+
+const text = new Text('div', 'wrapper_text');
+text.render();
 
 const textArea = new TextArea('textarea', 'textarea', 7, 100);
 textArea.createElement().render(document.body);
