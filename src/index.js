@@ -9,18 +9,24 @@ import KeyBoard from './assets/Components/keyboard';
 import BUTTONS from './assets/Data/buttons';
 import Text from './assets/Components/titletext';
 
-const text = new Text('div', 'wrapper_text');
-text.render();
+window.onload = () => {
+  const text = new Text('div', 'wrapper_text');
+  text.render();
 
-const textArea = new TextArea('textarea', 'textarea', 7, 100);
-textArea.createElement().render(document.body);
-console.log(textArea);
+  const textArea = new TextArea('textarea', 'textarea', 7, 100);
+  textArea.createElement().render(document.body);
 
-const keyBoard = new KeyBoard(BUTTONS);
-keyBoard.createKeyBoard().createRowsKeys();
-console.log(keyBoard); // REMOVE AFTER
+  const keyBoard = new KeyBoard(BUTTONS);
+  keyBoard.createKeyBoard().createRowsKeys();
 
-const control = new Control(textArea, keyBoard);
-control.createListenerForVirtualButtons();
-control.createListenerForRealButtons();
-// console.log(control); // REMOVE AFTERS
+  const control = new Control(textArea, keyBoard);
+  control.createListenerForVirtualButtons();
+  control.createListenerForRealButtons();
+
+  const data = JSON.stringify('en');
+
+  if (!localStorage.getItem('languageSetting')) {
+    localStorage.clear();
+    localStorage.setItem('languageSetting', data);
+  }
+};

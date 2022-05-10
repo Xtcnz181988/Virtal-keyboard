@@ -20,7 +20,11 @@ export default class KeyBoard {
         if (element.row === row) {
           this.key = document.createElement('button');
           this.key.className = element.style;
-          this.key.innerText = element.content.en; // REMOVE AFTER
+          if (JSON.parse(localStorage.getItem('languageSetting')) === 'en') {
+            this.key.innerText = element.content.en;
+          } else {
+            this.key.innerText = element.content.ru;
+          }
           this.key.symbol = element.symbol;
           this.key.push = element.push;
           this.key.content = element.content;
@@ -37,41 +41,3 @@ export default class KeyBoard {
     return this;
   }
 }
-
-//     console.log(this.keyBoard) // REMOVE
-//     return this;
-// }
-
-// createKey () {
-//     this.buttons.forEach(key => {
-//         if(key.row === this.keyBoard.row.)
-//     });
-// }
-// render (parent) {
-//     parent.append(this.keyBoard);
-//     return this;
-// }
-
-// createWrapperKeyBoard () {
-//     this.wrapperKeyboard = document.createElement('div');
-//     this.wrapperKeyboard.className = 'wrapper-keyboard';
-//     return this.wrapperKeyboard;
-// }
-
-// createKey () {
-
-// }
-
-// createKeyBoard () {
-//     const rows = [];
-//     for (let x = 0; x < 5; x++) {
-//         rows.push(this.row)
-//     }
-//     // console.log(rows)
-//     // this.wrapperKeyboard.append(...rows)
-//     // console.log(this.wrapperKeyboard)
-//     document.body.append(this.wrapperKeyboard);
-
-// renderKeyBoard () {
-
-// }

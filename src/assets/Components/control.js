@@ -8,8 +8,8 @@ export default class Control {
     this.ControlLeft = false;
     this.ControlRight = false;
     this.AltLeft = false;
-    this.Language = 'en';
-    this.arrFunctionalityBottons = ['CapsLock', 'ShiftRight', 'ControlLeft', 'ControlRight', 'AltLeft', 'ShiftLeft'];
+    this.Language = JSON.parse(localStorage.getItem('languageSetting'));
+    this.arrFunctionalityBottons = ['CapsLock', 'ShiftRight', 'ControlLeft', 'ControlRight', 'AltLeft', 'AltRight', 'ShiftLeft', 'MetaLeft'];
   }
 
   createListenerForVirtualButtons() {
@@ -50,9 +50,7 @@ export default class Control {
     if (code === 'CapsLock') {
       this.changeCapsLock();
     } else if (code === 'ShiftLeft') {
-      console.log(this.AltLeft);
       if (this.AltLeft) {
-        console.log('входит');
         this.ShiftLeft = !this.ShiftLeft;
         this.changeLanguage(e);
       } else if (!this.ShiftRight) {
@@ -100,7 +98,6 @@ export default class Control {
   }
 
   changeShift() {
-    //   console.log('ШИФТ')
     this.keyBoard.setKeys.forEach((key) => {
       const tempKey = key;
       if (key.symbol === 'letter' || key.symbol === 'other' || key.symbol === 'digits') {
@@ -134,30 +131,37 @@ export default class Control {
             tempKey.innerText = key.content.en.toLowerCase();
           }
         }
-        // if (e.type === 'click') {
-        // const tkc = tempKey.code
-        //     if (tkc ==='ShiftLeft' || tkc === 'ShiftLeft' || tkc === 'AltLeft') {
-        //       tempKey.classList.remove('active_button');
-        //     }
-        //     this.changeShift();
-        //     this.AltLeft = false;
-        //     this.ShiftLeft = false;
-        //     this.ShiftRight = false;
-        // }
+        if (e.type === 'click') {
+          const tkc = tempKey.code;
+          if (tkc === 'ShiftLeft' || tkc === 'ShiftLeft' || tkc === 'AltLeft') {
+            tempKey.classList.remove('active_button');
+          }
+        }
       });
       if (this.Language === 'en') {
         this.Language = 'ru';
+        localStorage.setItem('languageSetting', JSON.stringify(this.Language));
       } else {
         this.Language = 'en';
+        localStorage.setItem('languageSetting', JSON.stringify(this.Language));
       }
     }
-    console.log(this.AltLeft);
     if (this.ShiftLeft || this.ShiftRight) {
       this.AltLeft = false;
     } else if (this.AltLeft) {
       this.ShiftLeft = false;
     }
-    console.log(this.AltLeft);
+    if (e.type === 'click') {
+      this.AltLeft = false;
+      this.ShiftLeft = false;
+      this.ShiftRight = false;
+      this.keyBoard.setKeys.forEach((key) => {
+        if (key.symbol === 'letter' || key.symbol === 'other' || key.symbol === 'digits') {
+          const tempKey = key;
+          tempKey.innerText = tempKey.innerText.toLowerCase();
+        }
+      });
+    }
   }
 
   changeStyleButton(e, code) {
@@ -220,7 +224,7 @@ export default class Control {
 
     this.keyBoard.setKeys.forEach((key) => {
       const tempKey = key;
-      if (tempKey.code === code) {
+      if (tempKey.code === code && !this.arrFunctionalityBottons.includes(tempKey.code)) {
         if (tempKey.code === 'Tab') {
           symbol = '\t';
           this.textArea.element.value = stringStart + symbol + stringEnd;
@@ -239,7 +243,6 @@ export default class Control {
           }
         } else if (tempKey.code === 'Delete') {
           if (start === end) {
-            console.log('start === end');
             symbol = stringStart + stringEnd.slice(1);
             this.textArea.element.value = symbol;
             this.textArea.element.setSelectionRange(stringStart.length, stringStart.length);
