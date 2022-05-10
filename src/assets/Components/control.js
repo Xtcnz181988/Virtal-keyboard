@@ -239,9 +239,9 @@ export default class Control {
             this.textArea.element.value = symbol;
             this.textArea.element.setSelectionRange(stringStart.length - 1, stringEnd.length - 1);
           } else {
-            symbol = stringStart.slice(0, start) + stringEnd.slice(end, length);
+            symbol = stringStart.slice(0, start) + value.slice(end, length);
             this.textArea.element.value = symbol;
-            this.textArea.element.setSelectionRange(stringStart.length, stringEnd.length);
+            this.textArea.element.setSelectionRange(stringStart.length, stringStart.length);
           }
         } else if (tempKey.code === 'Delete') {
           if (start === end) {
@@ -249,14 +249,21 @@ export default class Control {
             this.textArea.element.value = symbol;
             this.textArea.element.setSelectionRange(stringStart.length, stringStart.length);
           } else {
-            symbol = stringStart + value.slice(end, length);
+            symbol = stringStart.slice(0, start) + value.slice(end, length);
             this.textArea.element.value = symbol;
-            this.textArea.element.setSelectionRange(stringStart.length, stringEnd.length);
+            this.textArea.element.setSelectionRange(stringStart.length, stringStart.length);
           }
-        } else {
+        } else if (start === end) {
           symbol = tempKey.textContent;
           this.textArea.element.value = stringStart + symbol + stringEnd;
           this.textArea.element.setSelectionRange(start, end);
+          this.textArea.element.selectionStart = start + 1;
+        } else if (start !== end) {
+          symbol = tempKey.textContent;
+          const stringPartStart = stringStart.slice(0, start);
+          const stringPartEnd = value.slice(end, length);
+          this.textArea.element.value = stringPartStart + symbol + stringPartEnd;
+          this.textArea.element.setSelectionRange(stringStart.length, stringStart.length);
           this.textArea.element.selectionStart = start + 1;
         }
       }
