@@ -228,6 +228,8 @@ export default class Control {
         if (tempKey.code === 'Tab') {
           symbol = '\t';
           this.textArea.element.value = stringStart + symbol + stringEnd;
+          this.textArea.element.setSelectionRange(start, end);
+          this.textArea.element.selectionStart = start + 1;
         } else if (tempKey.code === 'Enter') {
           symbol = '\r';
           this.textArea.element.value = stringStart + symbol + stringEnd;
