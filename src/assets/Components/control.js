@@ -251,7 +251,12 @@ export default class Control {
           if (start === end) {
             symbol = stringStart.slice(0, -1) + stringEnd;
             this.textArea.element.value = symbol;
-            this.textArea.element.setSelectionRange(stringStart.length - 1, stringEnd.length - 1);
+            if (start !== 0) {
+              const stringLength = stringStart.length;
+              this.textArea.element.setSelectionRange(stringLength - 1, stringLength - 1);
+            } else {
+              this.textArea.element.setSelectionRange(0, 0);
+            }
           } else {
             symbol = stringStart.slice(0, start) + value.slice(end, length);
             this.textArea.element.value = symbol;
