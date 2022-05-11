@@ -40,7 +40,7 @@ export default class Control {
       if (this.keyBoard.setCodes.includes(eventKeyUp.code)) {
         this.changeStyleButton(eventKeyUp, eventKeyUp.code);
         if (eventKeyUp.code !== 'CapsLock') {
-          if (eventKeyUp.code === 'ShiftRight' && !this.ShiftRight) {
+          if (eventKeyUp.code === 'ShiftRight' && this.ShiftRight) {
             this.checkFunctionality(eventKeyUp, eventKeyUp.code);
           } else if (eventKeyUp.code === 'ShiftLeft' && this.ShiftLeft) {
             this.checkFunctionality(eventKeyUp, eventKeyUp.code);
