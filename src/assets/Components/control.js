@@ -40,7 +40,21 @@ export default class Control {
       if (this.keyBoard.setCodes.includes(eventKeyUp.code)) {
         this.changeStyleButton(eventKeyUp, eventKeyUp.code);
         if (eventKeyUp.code !== 'CapsLock') {
-          this.checkFunctionality(eventKeyUp, eventKeyUp.code);
+          if (eventKeyUp.code === 'ShiftRight' && !this.ShiftRight) {
+            this.checkFunctionality(eventKeyUp, eventKeyUp.code);
+          } else if (eventKeyUp.code === 'ShiftLeft' && this.ShiftLeft) {
+            this.checkFunctionality(eventKeyUp, eventKeyUp.code);
+          } else if (eventKeyUp.code === 'ControlLeft' && this.ControlLeft) {
+            this.checkFunctionality(eventKeyUp, eventKeyUp.code);
+          } else if (eventKeyUp.code === 'ControlLeft' && this.ControlRight) {
+            this.checkFunctionality(eventKeyUp, eventKeyUp.code);
+          } else if (eventKeyUp.code === 'AltLeft' && this.AltLeft) {
+            this.checkFunctionality(eventKeyUp, eventKeyUp.code);
+          } else if (eventKeyUp.code === 'AltRight' && this.AltRight) {
+            this.checkFunctionality(eventKeyUp, eventKeyUp.code);
+          } else if (!this.arrFunctionalityBottons.includes(eventKeyUp.code)) {
+            this.checkFunctionality(eventKeyUp, eventKeyUp.code);
+          }
         }
       }
     });
