@@ -247,6 +247,7 @@ export default class Control {
         } else if (tempKey.code === 'Enter') {
           symbol = '\r';
           this.textArea.element.value = stringStart + symbol + stringEnd;
+          this.textArea.element.setSelectionRange(0, 0);
         } else if (tempKey.code === 'Backspace') {
           if (start === end) {
             symbol = stringStart.slice(0, -1) + stringEnd;
