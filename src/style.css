@@ -1,0 +1,74 @@
+.wrapper {
+    height: 100%;
+    width: 100%;
+    background-color: #292c33;
+}
+
+.wrapper-keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 5px;
+    background-color: #f26739;
+    border-radius: 10px;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.normal {
+    width: 50px;
+}
+
+.medium {
+    width: 75px;
+}
+
+.wide {
+    width: 107.5px;
+}
+
+.wideplus {
+    width: 152.5px;
+}
+
+.overwide {
+    width: 377.5px;
+}
+
+.widepluplus {
+    width: 207.5px;
+}
+
+.active_button {
+    box-shadow: none;
+    transform: scale(0.95);
+    transition: 0.1s;
+    color: white;
+    text-shadow: white 1px 0 10px;
+}
+
+.push_button {
+    box-shadow: none;
+    transform: scale(0.95);
+    transition: 0.1s;
+}
+
+.wrapper_text {
+    max-width: 70%;
+}
+
+.title_text {
+    text-align: center;
+    font-size: 30px;
+    color: #f26739;
+}
+
+.text_description {
+    text-align: center;
+    font-size: 20px;
+    color: #f26739;
+}
